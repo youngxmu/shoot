@@ -1,19 +1,17 @@
 cc.Class({
     extends: cc.Component,
     properties: {
-        anim : cc.Animation,
         game: {
             default: null,
             serializable: false
+        },
+        gun : {
+            default: null,
+            type: cc.Node
         }
     },
-    play : function(){
-        if(!this.game.end){//游戏未结束才可以射击
-            this.anim.play('gun-shoot');    
-        }
-    },
-    start () {
-        this.game = this.node.game;
+    onLoad : function(){
+        this.anim = this.gun.getComponent(cc.Animation);
         this.anim.on('play', this.onPlay, this);
         this.anim.on('finished', this.onFinished, this);
     },
@@ -26,5 +24,11 @@ cc.Class({
             this.game.comboFail();
         }
         this.game.shoot = false;
+    },
+    play : function(){
+        console.log(123);
+        if(!this.game.end){//游戏未结束才可以射击
+            this.anim.play();
+        }
     }
 });
