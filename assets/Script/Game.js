@@ -140,12 +140,20 @@ cc.Class({
         // _this.createBomb(_this);    
         this.createInterval = setInterval(function(){
             var seed = cc.random0To1();
-            if(seed < 0.3){// ~30概率出现炸弹
+            if(seed < 0.1){// ~30概率出现炸弹
                 _this.createBomb(_this);    
             }else{
                 _this.createBottle(_this);
             }
-        }, 300);
+        }, 600);
+    },
+    restart : function(){
+        this.score = 0;
+        this.scoreDisplay.string = 0;
+        this.end = false;
+        clearInterval(this.createInterval);
+        this.comboFail();
+        this.start();
     },
     gainScore: function (score) {
         this.score += score;
