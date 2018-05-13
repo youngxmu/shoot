@@ -26,7 +26,6 @@ cc.Class({
         this.game.shoot = false;
     },
     play : function(){
-        console.log(123);
         if(!this.game.end){//游戏未结束才可以射击
             this.anim.play();
         }
